@@ -5,7 +5,6 @@ import (
 	"fmt"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/tealeg/xlsx/v3"
-	"log"
 	"strconv"
 )
 
@@ -34,14 +33,14 @@ func fillDatabase(db *sql.DB) {
 	var cellElement *xlsx.Cell
 
 	id := 1
-	for i := -1; i < sheet.MaxCol; i++ { // changed i = to 0 when creating a new .db!@#!$#@$@$
+	for i := -1; i < sheet.MaxCol; i++ {
 		keyStatement = "INSERT INTO GameData (" + headers[i+1] + ") VALUES (?)"
 		prepKey, err := db.Prepare(keyStatement)
 		CheckErr("fillDatabase: PrepStatement error ", err)
 		updateStatement = "UPDATE GameData SET " + headers[i+1] + " = ? WHERE id = ?"
 		prepUpdate, err := db.Prepare(updateStatement)
 
-		for j := 1; j < sheet.MaxRow; j++ { // update this to MaxRow------------------------I*&^%$#@
+		for j := 1; j < sheet.MaxRow; j++ {
 			if i == -1 {
 				_, err = prepKey.Exec(id)
 				CheckErr("fillDatabase: PrepStatement error at if statement ", err)
@@ -84,7 +83,7 @@ func createTables(db *sql.DB) []string {
 			} else {
 				headerType = "TEXT"
 			}
-			statement = statement + cellElement.Value + " " + headerType + ");" // test for proper statement - can change ");" to ";)"
+			statement = statement + cellElement.Value + " " + headerType + ");"
 		} else {
 			if cellType.Type() == xlsx.CellTypeNumeric {
 				headerType = "INTEGER"
@@ -98,10 +97,28 @@ func createTables(db *sql.DB) []string {
 		headers = append(headers, cellElement.Value)
 	}
 
-	_, err := db.Exec(statement)
-	if err != nil {
-		log.Fatal("Database execution error ", err)
-	}
-	fmt.Println("Database Tables Created")
+	//if isGameDataEmpty() {
+	//	_, err := db.Exec(statement)
+	//	if err != nil {
+	//		log.Fatal("Database execution error ", err)
+	//	}
+	//}
+	//fmt.Println("Database Tables Created")
 	return headers
 }
+
+//func isGameDataEmpty() bool{
+//	result, err := GameDataBase.Query("SELECT id FROM GameData")
+//	CheckErr("Query error at isTableEmpty ", err)
+//	defer result.Close()
+//
+//	count := 0
+//	for result.Next(){
+//		count++
+//	}
+//
+//	if count > 0 {
+//		return false
+//	}
+//	return true
+//}
