@@ -5,6 +5,7 @@ import (
 	"fmt"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/tealeg/xlsx/v3"
+	"log"
 	"strconv"
 )
 
@@ -98,27 +99,27 @@ func createTables(db *sql.DB) []string {
 	}
 
 	//if isGameDataEmpty() {
-	//	_, err := db.Exec(statement)
-	//	if err != nil {
-	//		log.Fatal("Database execution error ", err)
-	//	}
+	_, err := db.Exec(statement)
+	if err != nil {
+		log.Fatal("Database execution error ", err)
+	}
 	//}
-	//fmt.Println("Database Tables Created")
+	fmt.Println("Database Tables Created")
 	return headers
 }
 
-//func isGameDataEmpty() bool{
-//	result, err := GameDataBase.Query("SELECT id FROM GameData")
-//	CheckErr("Query error at isTableEmpty ", err)
-//	defer result.Close()
-//
-//	count := 0
-//	for result.Next(){
-//		count++
-//	}
-//
-//	if count > 0 {
-//		return false
-//	}
-//	return true
-//}
+func isGameDataEmpty() bool {
+	result, err := GameDataBase.Query("SELECT id FROM GameData")
+	CheckErr("Query error at isTableEmpty ", err)
+	defer result.Close()
+
+	count := 0
+	for result.Next() {
+		count++
+	}
+
+	if count > 0 {
+		return false
+	}
+	return true
+}
