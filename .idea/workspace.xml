@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a740e90c-b06e-4501-8682-e79ed87ccc7a" name="Default Changelist" comment="second commit&#10;completed the searchEntry function&#10;created a homepage function with some html&#10;updated readme">
+      <change afterPath="$PROJECT_DIR$/.github/go.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +117,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -128,7 +134,8 @@
     <MESSAGE value="first commit" />
     <MESSAGE value="second commit&#10;completed the searchEntry function&#10;created a homepage function with some html&#10;updated readme" />
     <MESSAGE value="Third commit, added database_test.go, removed some comments noted to self, added more variables to entry struct, created a homepage to attempt to create a text box with search button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Third commit, added database_test.go, removed some comments noted to self, added more variables to entry struct, created a homepage to attempt to create a text box with search button" />
+    <MESSAGE value="updated readme for assistance troubleshooting for project testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated readme for assistance troubleshooting for project testing" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
